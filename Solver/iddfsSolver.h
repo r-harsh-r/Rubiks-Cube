@@ -13,11 +13,13 @@ template<class T> class IDDFSSolver {
 
         vector<RubiksCube::MOVE> solve() {
             vector<RubiksCube::MOVE> moves;
+            
             for (int depth = 0; depth <= max_depth; depth++) {
                 if (iddfs(depth, moves)) {
                     return moves;
                 }
             }
+            
             return {};
         }
 

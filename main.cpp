@@ -13,7 +13,7 @@ using namespace std;
 int main(){
     RubiksCube3dArray cube;
     cube.u();
-    cube.d();
+    // cube.d();
     // cube.l();
     // cube.l();
     cube.print();

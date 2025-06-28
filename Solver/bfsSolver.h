@@ -9,7 +9,8 @@
 // T : type of rubiks cube
 // H : hash function
 
-template<class T, typename H> class BFSSolver{
+template<typename T, typename H> 
+class BFSSolver{
     public:
     T rc;
     int max_depth;

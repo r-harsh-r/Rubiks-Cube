@@ -42,9 +42,10 @@ public:
     // give the color char
     static char getColorLetter(COLOR color);
 
-    /*
-     * Returns true if the Rubik Cube is solved, otherwise returns false.
-     */
+    // return if the Rubik's Cube is solved or not
+    // Virtual : To be implemented in derived class
+    // = 0 : means the function is pure virtual
+    // const : does not changes the state of object
     virtual bool isSolved() const = 0;
 
     /*

@@ -9,7 +9,8 @@
 // T : type of rubiks cube
 // H : hash function
 
-template<typename T, typename H> class DFSSolver{
+template<typename T, typename H> 
+class DFSSolver{
     public :
     T rc;
     private:
@@ -51,9 +52,6 @@ template<typename T, typename H> class DFSSolver{
     DFSSolver(T cube, int max_depth = 8) : rc(cube), max_depth(max_depth) , mov(8) {};
 
     vector<RubiksCube::MOVE> solve() {
-        // cout<<"Recieved : "<<endl;
-        // rc.print();
-
         f = dfs(0);
 
         return moves;

@@ -1,6 +1,7 @@
 #include "rubiksCube.h"
 
 class RubiksCube3dArray : public RubiksCube {
+    // method to rotate face clockwise
     void rotateFace(int ind) {
         char temp_arr[3][3] = {};
         for (int i = 0; i < 3; i++) {
@@ -8,10 +9,12 @@ class RubiksCube3dArray : public RubiksCube {
                 temp_arr[i][j] = cube[ind][i][j];
             }
         }
-        for (int i = 0; i < 3; i++) cube[ind][0][i] = temp_arr[2 - i][0];
-        for (int i = 0; i < 3; i++) cube[ind][i][2] = temp_arr[0][i];
-        for (int i = 0; i < 3; i++) cube[ind][2][2 - i] = temp_arr[i][2];
-        for (int i = 0; i < 3; i++) cube[ind][2 - i][0] = temp_arr[2][2 - i];
+        for(int i = 0;i<3;i++){
+            for(int j = 0;j<3;j++){
+                cube[ind][j][2-i] = temp_arr[i][j];
+            }
+        }
+
     }
 
 
@@ -47,6 +50,7 @@ class RubiksCube3dArray : public RubiksCube {
         return COLOR::WHITE; // Default case, should not happen
     }
 
+
     virtual bool isSolved() const override{
         for(int i = 0;i<6;i++){
             char color = RubiksCube::getColorLetter(COLOR(i));
@@ -66,11 +70,11 @@ class RubiksCube3dArray : public RubiksCube {
         rotateFace(0);
         // Rotate the edges around the top face
         char temp_arr[3];
-        for (int i = 0; i < 3; i++) temp_arr[i] = cube[4][0][2 - i];
-        for (int i = 0; i < 3; i++) cube[4][0][2 - i] = cube[1][0][2 - i];
-        for (int i = 0; i < 3; i++) cube[1][0][2 - i] = cube[2][0][2 - i];
-        for (int i = 0; i < 3; i++) cube[2][0][2 - i] = cube[3][0][2 - i];
-        for (int i = 0; i < 3; i++) cube[3][0][2 - i] = temp_arr[i];
+        for (int i = 0; i < 3; i++) temp_arr[i] = cube[4][0][i];
+        for (int i = 0; i < 3; i++) cube[4][0][i] = cube[1][0][i];
+        for (int i = 0; i < 3; i++) cube[1][0][i] = cube[2][0][i];
+        for (int i = 0; i < 3; i++) cube[2][0][i] = cube[3][0][i];
+        for (int i = 0; i < 3; i++) cube[3][0][i] = temp_arr[i];
         return *this;
     }
 
@@ -240,11 +244,11 @@ class RubiksCube3dArray : public RubiksCube {
         return true;
     }
 
-    RubiksCube3dArray &operator=(RubiksCube3dArray &rc){
-        for(int i = 0;i<6;i++){
-            for(int j = 0;j<3;j++){
-                for(int k = 0;k<3;k++){
-                    cube[i][j][k] = rc.cube[i][j][k];
+    RubiksCube3dArray & operator=(const RubiksCube3dArray & rc){
+        for(int f = 0;f<6;f++){
+            for(int i = 0;i<3;i++){
+                for(int j = 0;j<3;j++){
+                    cube[f][i][j] = rc.cube[f][i][j];
                 }
             }
         }

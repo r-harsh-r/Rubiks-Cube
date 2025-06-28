@@ -1,7 +1,3 @@
-//
-// Created by Lakshya Mittal on 26-12-2021.
-//
-
 #include "rubiksCube.h"
 
 class RubiksCubeBitboard : public RubiksCube {
@@ -15,10 +11,12 @@ private:
 
     uint64_t one_8 = (1 << 8) - 1, one_24 = (1 << 24) - 1;
 
+    // clock wise rotation
     void rotateFace(int ind) {
-        uint64_t side = bitboard[ind];
-        side = side >> (8 * 6);
-        bitboard[ind] = (bitboard[ind] << 16) | (side);
+        uint64_t temp = bitboard[ind];
+        temp = (temp<<(2*8));
+        temp = temp | (bitboard[ind]>>(8*6));
+        bitboard[ind] = temp;
     }
 
     void rotateSide(int s1, int s1_1, int s1_2, int s1_3, int s2, int s2_1, int s2_2, int s2_3) {
